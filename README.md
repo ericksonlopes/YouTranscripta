@@ -24,7 +24,7 @@ The system is composed of:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-user/youtranscripta.git
+git clone https://github.com/ericksonlopes/YouTranscripta
 cd youtranscripta
 ```
 
@@ -76,14 +76,3 @@ if __name__ == '__main__':
 - [OpenAI](https://openai.com/)
 - [YouTube Transcript API](https://pypi.org/project/youtube-transcript-api/)
 - [Python 3.11+](https://www.python.org/)
-
-## 💡 Future Improvements
-
-- Web interface with URL input support
-- Multi-language transcript support
-- Persisting transcripts in SQL databases (e.g., PostgreSQL)
-- Automatic video summarization
-
-## 📄 License
-
-MIT License.
