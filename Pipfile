@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+youtube-transcript-api = "*"
+langchain-core = "*"
+python-decouple = "*"
+langchain-community = "*"
+langchain = {extras = ["openai"], version = "*"}
+langchain-chroma = ">=0.1.2"
+lark = "*"
+loguru = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
