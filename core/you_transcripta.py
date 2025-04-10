@@ -6,6 +6,7 @@ from core.temporal_text_splitter import TemporalTextSplitter
 from core.transcript import TranscriptProcessor
 from core.vectorstore import VectorStoreHandler
 
+
 class YouTranscripta:
     """Facade for the YouTube transcription and RAG-based QA system."""
 
@@ -30,15 +31,3 @@ class YouTranscripta:
 
     def ask(self, question: str) -> str:
         return self.qa_system.ask(question)
-
-
-# if __name__ == '__main__':
-#     logger.info("Starting transcription and QA pipeline...")
-#
-#     VIDEO_ID = "MZcr14hL8lI"
-#     yt = YouTranscripta(video_id=VIDEO_ID)
-#
-#     question = "Vale a pena usar a caixinha turbo da nubank?"
-#     answer = yt.ask(question)
-#
-#     print(answer)

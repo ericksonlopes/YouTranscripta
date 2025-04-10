@@ -3,15 +3,15 @@ from yt_dlp import YoutubeDL
 
 
 class VideoMetadataExtractor:
-    """Classe para extrair metadados de um vídeo do YouTube."""
+    """Class to extract metadata from a YouTube video."""
 
     def __init__(self, video_id: str):
         self.video_id = video_id
         self.video_url = f"https://www.youtube.com/watch?v={video_id}"
 
     def extract_metadata(self) -> dict:
-        """Extrai metadados do vídeo usando yt_dlp."""
-        logger.info(f"Extraindo metadados do vídeo {self.video_id}...")
+        """Extracts metadata from the video using yt_dlp."""
+        logger.info(f"Extracting metadata for video {self.video_id}...")
         ydl_opts = {
             'format': 'best',
             'noplaylist': True,
@@ -43,9 +43,9 @@ class VideoMetadataExtractor:
                     'uploader_url': info_dict.get('uploader_url'),
                 }
 
-                logger.success(f"Metadados extraídos com sucesso para {self.video_id}")
+                logger.success(f"Metadata successfully extracted for {self.video_id}")
                 return metadata
 
         except Exception as e:
-            logger.error(f"Erro ao extrair metadados do vídeo {self.video_id}: {e}")
+            logger.error(f"Error extracting metadata for video {self.video_id}: {e}")
             return {}

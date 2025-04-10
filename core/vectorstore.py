@@ -1,8 +1,10 @@
 from typing import List
-from loguru import logger
+
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
+from loguru import logger
+
 
 class VectorStoreHandler:
     def __init__(self, persist_dir: str = "./chroma_langchain_db"):

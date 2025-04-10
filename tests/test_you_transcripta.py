@@ -4,20 +4,20 @@ from core.you_transcripta import YouTranscripta
 def test_full_pipeline(monkeypatch):
     monkeypatch.setenv("OPENAI_API_KEY", "fake-api-key")
 
-    # Mocka o fetch da transcrição
+    # Mocks the transcript fetch
     monkeypatch.setattr("core.transcript.TranscriptProcessor._fetch_transcript", lambda self: [
-        type("TranscriptSnippet", (), {"text": "Teste", "start": 0.0, "duration": 2.0})()
+        type("TranscriptSnippet", (), {"text": "Test", "start": 0.0, "duration": 2.0})()
     ])
 
-    # Mocka o verificador de vídeo indexado
+    # Mocks the indexed video checker
     monkeypatch.setattr("core.vectorstore.VectorStoreHandler.video_already_indexed", lambda self, id: False)
 
-    # Mocka a extração de metadados
+    # Mocks metadata extraction
     monkeypatch.setattr("core.qa_system.VideoMetadataExtractor.extract_metadata", lambda self: {
         "title": "titulo", "channel": "canal", "tags": ["teste"]
     })
 
-    # Mocka o retriever esperado pelo LangChain
+    # Mocks the retriever expected by LangChain
     class DummyRetriever:
         def invoke(self, x):
             return {"result": "mock"}
@@ -28,7 +28,7 @@ def test_full_pipeline(monkeypatch):
 
     monkeypatch.setattr("core.vectorstore.VectorStoreHandler.create_vectorstore", lambda self, docs: DummyVectorStore())
 
-    # Mocka a QA chain com resposta pronta
+    # Mocks the QA chain with a ready response
     class DummyQAChain:
         def invoke(self, inputs):
             return {"result": "Resposta teste"}

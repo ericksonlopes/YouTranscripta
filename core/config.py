@@ -4,7 +4,6 @@ from decouple import config
 from loguru import logger
 
 
-# Environment configuration class
 class Config:
     """Centralized environment configuration class."""
 
