@@ -12,6 +12,7 @@ langchain = {extras = ["openai"], version = "*"}
 langchain-chroma = ">=0.1.2"
 lark = "*"
 loguru = "*"
+yt-dlp = "*"
 
 [dev-packages]
 

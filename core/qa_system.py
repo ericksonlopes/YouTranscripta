@@ -4,10 +4,14 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from loguru import logger
 
-class QASystem:
+from core.metadata_extractor import VideoMetadataExtractor
+
+
+class QASystem(VideoMetadataExtractor):
     """Question and Answer system based on vector retrieval."""
 
     def __init__(self, vectorstore: Chroma, video_id, model_name: str = "gpt-4o-mini", temperature: float = 0.3):
+        super().__init__(video_id)
         self.video_id = video_id
         self.vectorstore = vectorstore
         self.llm = ChatOpenAI(model=model_name, temperature=temperature)
@@ -16,7 +20,9 @@ class QASystem:
     def _setup_qa_chain(self) -> RetrievalQA:
         """Sets up the QA chain."""
         logger.info("Setting up the question and answer chain...")
-        prompt = self._create_prompt()
+        metadata = self.extract_metadata()
+
+        prompt = self._create_prompt(metadata)
 
         qa_chain = RetrievalQA.from_chain_type(
             llm=self.llm,
@@ -31,10 +37,15 @@ class QASystem:
         return qa_chain
 
     @staticmethod
-    def _create_prompt() -> PromptTemplate:
-        """Creates the prompt template."""
+    def _create_prompt(metadata: dict) -> PromptTemplate:
+        """Cria o prompt com metadados do vídeo."""
         return PromptTemplate(
-            input_variables=["question"],
+            input_variables=["question", "context"],
+            partial_variables={
+                "video_title": metadata.get("title", "Unknown Title"),
+                "channel": metadata.get("channel", "Unknown Channel"),
+                "tags": ", ".join(metadata.get("tags", []))
+            },
             template="""
             You are an intelligent assistant who has read the transcript of a YouTube video.
 
@@ -45,6 +56,11 @@ class QASystem:
             Provide a detailed and well-structured answer to the following question:
 
             {question}
+
+            Information to consider:
+            title video: {video_title}
+            channel: {channel}
+            tags: {tags}
             """
         )
 

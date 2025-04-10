@@ -2,7 +2,7 @@ from loguru import logger
 
 from core.config import Config
 from core.qa_system import QASystem
-from core.splitter import TemporalTextSplitter
+from core.temporal_text_splitter import TemporalTextSplitter
 from core.transcript import TranscriptProcessor
 from core.vectorstore import VectorStoreHandler
 
@@ -36,10 +36,10 @@ class YouTranscripta:
 if __name__ == '__main__':
     logger.info("Starting transcription and QA pipeline...")
 
-    VIDEO_ID = "MAo7Z8UttyY"
+    VIDEO_ID = "WjlIHLgmYoA"
     yt = YouTranscripta(video_id=VIDEO_ID)
 
-    question = "Quais são os principais pontos discutidos no vídeo?"
+    question = "Quais são os 5 FUNDOS IMOBILIÁRIOS PARA INVESTIR HOJE E NUNCA MAIS VENDER?"
     answer = yt.ask(question)
 
     print(answer)
