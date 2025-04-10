@@ -1,9 +1,9 @@
 import streamlit as st
+
 from core.you_transcripta import YouTranscripta
 
 st.set_page_config(page_title="YouTranscripta", layout="wide")
 
-# Estilo
 st.markdown("""
     <style>
         .stTextInput>div>div>input {
@@ -23,18 +23,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Cabeçalho
 st.markdown('<div class="big-title">🎥 YouTranscripta</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Transcreva vídeos do YouTube e faça perguntas com IA usando LangChain + RAG.</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Transcreva vídeos do YouTube e faça perguntas com IA usando LangChain + RAG.</div>',
+            unsafe_allow_html=True)
 st.markdown("---")
 
-# Inputs centralizados
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     video_url = st.text_input("Insira a URL do vídeo do YouTube:")
     question = st.text_input("Digite sua pergunta sobre o conteúdo do vídeo:")
 
-# Execução
 if video_url:
     try:
         video_id = video_url.split("v=")[-1].split("&")[0]
@@ -47,7 +45,6 @@ if video_url:
 
                 st.success("✅ Análise finalizada!")
 
-            # Resposta em tela cheia
             st.markdown("### 💡 Resposta:")
             st.markdown(resposta)
 
