@@ -1,5 +1,5 @@
 import streamlit as st
-from core.main import YouTranscripta
+from core.you_transcripta import YouTranscripta
 
 st.set_page_config(page_title="YouTranscripta", layout="wide")
 
