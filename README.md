@@ -69,11 +69,23 @@ Covers:
 
 ## ▶️ How to Use
 
-```bash
-git clone https://github.com/ericksonlopes/YouTranscripta
-cd youtranscripta
-pip install -r requirements.txt
-```
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/ericksonlopes/YouTranscripta
+    cd youtranscripta
+    ```
+
+2. Create a virtual environment and activate it:
+    ```sh
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+3. Install the required dependencies:
+    ```sh
+    pip install pipenv
+    pipenv install
+    ```
 
 Create a `.env` file:
 
