@@ -93,7 +93,7 @@ if video_url:
                 with st.spinner("Consultando IA..."):
                     resposta = yt.ask(question)
 
-                st.success("✅ Análise finalizada!")
+                st.success(f"✅ Análise finalizada! ({question})")
 
             # Resposta em tela cheia
             st.markdown("### 💡 Resposta:")
